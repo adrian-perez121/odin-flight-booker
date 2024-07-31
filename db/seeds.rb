@@ -7,6 +7,28 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-["CA", "NY", "AZ", "AL", "AK", "TX"].each do |code|
+
+codes = ["CA", "NY", "AZ", "AL", "AK", "TX"]
+codes.each do |code|
   Airport.create(code: code)
 end
+
+yr = Time.now.year
+m = Time.now.month + 1
+ids = Airport.ids
+
+15.times do
+  arr_id = ids.sample
+  dept_id = ids.sample
+  while dept_id == arr_id
+    dept_id = ids.sample
+  end
+
+  Flight.create!(arrival_airport_id: arr_id,
+                 departure_airport_id: dept_id,
+                 flight_duration: rand(1..8),
+                 start_time: Time.new(yr, rand(m..12), rand(1..31), rand(1..8) ))
+
+end
+
+

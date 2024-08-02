@@ -23,14 +23,19 @@
   <%= f.submit %>
 <% end %>
 
-<div>
-  <ul>
-  <% @flights.each do |flight| %>
-      <li>
-        From: <%= flight.departure_airport.code %> <br>
-        Date: <%= flight.start_time.strftime("%m/%d/%Y") %> <br>
-        To: <%= flight.arrival_airport.code %>
-      </li>
+<% unless @flights.empty? %>
+  <%= form_with url: "example.com", method: :get, local: true do |f| %>
+    <%= f.collection_radio_buttons :flight_id, @flights, :id, :start_time do |b| %>
+      <div>
+        <%= b.radio_button %>
+        <%= b.label do %>
+          <%= b.object.departure_airport.code %> - <%= b.object.arrival_airport.code %> <br>
+          Date: <%= b.object.start_time %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= f.submit "Select Flight" %>
   <% end %>
-  </ul>
-</div>
+<% end %>
+

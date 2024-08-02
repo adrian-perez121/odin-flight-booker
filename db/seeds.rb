@@ -17,7 +17,7 @@ yr = Time.now.year
 m = Time.now.month + 1
 ids = Airport.ids
 
-15.times do
+300.times do
   arr_id = ids.sample
   dept_id = ids.sample
   while dept_id == arr_id

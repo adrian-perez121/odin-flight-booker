@@ -3,20 +3,30 @@
 <%= form_with url: flights_path, method: :get, local: true do |f|  %>
   <div>
     <%= f.label :departure_airport_id, "Departure Airports" %>
-    <%= f.select(:departure_airport_id, options_for_select(@departing_flights)) %>
+    <%= f.select(:departure_airport_id, options_for_select(@departing_flights + [["Select", 0]], params[:departure_airport_id] || 0)) %>
   </div>
 
   <div>
     <%= f.label :start_time, "Flight Date" %>
-    <%= f.select(:start_time, options_for_select(@dates)) %>
+    <%= f.select(:start_time, options_for_select(@dates + [["Select", 0]], params[:start_time] || 0)) %>
   </div>
 
   <div>
     <%= f.label :arrival_airport_id, "Arrival Aiports" %>
-    <%= f.select(:arrival_airport_id, options_for_select(@arriving_flights)) %>
+    <%= f.select(:arrival_airport_id, options_for_select(@arriving_flights + [["Select", 0]], params[:arrival_airport_id] || 0)) %>
   </div>
 
   <%= f.submit %>
 <% end %>
 
-<%= params %>
+<div>
+  <ul>
+  <% @flights.each do |flight| %>
+      <li>
+        From: <%= flight.departure_airport.code %> <br>
+        Date: <%= flight.start_time.strftime("%m/%d/%Y") %> <br>
+        To: <%= flight.arrival_airport.code %>
+      </li>
+  <% end %>
+  </ul>
+</div>

@@ -16,6 +16,10 @@
     <%= f.select(:arrival_airport_id, options_for_select(@arriving_flights + [["Select", 0]], params[:arrival_airport_id] || 0)) %>
   </div>
 
+  <div>
+    <%= f.label :passengers, "Number of Passengers" %>
+    <%= f.select(:passengers, options_for_select(Array.new(4) { |i| i + 1} + [["Select", 0]], params[:passengers] || 0 )) %>
+  </div>
   <%= f.submit %>
 <% end %>
 

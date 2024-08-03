@@ -1,0 +1,23 @@
+<h1>Book your flight</h1>
+
+<h2> Flight: <%= @flight.departure_airport.code %> ----> <%= @flight.arrival_airport.code %></h2>
+<h2><%= @flight.start_time %></h2>
+
+<%= form_with model: @booking do |f|%>
+
+  <%= f.fields_for :passengers do |passenger_form| %>
+    <h3>Passenger</h3>
+    <div>
+      <%= passenger_form.label :name %>
+      <%= passenger_form.text_field :name %>
+    </div>
+
+    <div>
+      <%= passenger_form.label :email %>
+      <%= passenger_form.email_field :email %>
+    </div>
+  <% end %>
+
+<% end %>
+
+

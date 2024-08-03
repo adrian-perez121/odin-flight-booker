@@ -4,6 +4,7 @@
 <h2><%= @flight.start_time %></h2>
 
 <%= form_with model: @booking do |f|%>
+  <%= f.hidden_field :flight_id, value: params[:flight_id] %>
 
   <%= f.fields_for :passengers do |passenger_form| %>
     <h3>Passenger</h3>
@@ -17,6 +18,8 @@
       <%= passenger_form.email_field :email %>
     </div>
   <% end %>
+
+  <%= f.submit %>
 
 <% end %>
 

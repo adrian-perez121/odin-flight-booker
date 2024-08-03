@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :require_passengers, only: [:new]
 
   def new
     @flight = Flight.find(params[:flight_id])
@@ -30,5 +31,13 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:flight_id, passengers_attributes: [:name, :email])
   end
+
+  def require_passengers
+    if params[:num_passengers] == '0'
+      flash[:notice] = "Please choose a number of Passengers and press save"
+      redirect_to root_path
+    end
+  end
+
 
 end

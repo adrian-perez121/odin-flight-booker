@@ -17,14 +17,16 @@
   </div>
 
   <div>
-    <%= f.label :passengers, "Number of Passengers" %>
-    <%= f.select(:passengers, options_for_select(Array.new(4) { |i| i + 1} + [["Select", 0]], params[:passengers] || 0 )) %>
+    <%= f.label :num_passengers, "Number of Passengers" %>
+    <%= f.select(:num_passengers, options_for_select(Array.new(4) { |i| i + 1} + [["Select", 0]], params[:num_passengers] || 0 )) %>
   </div>
   <%= f.submit %>
 <% end %>
 
 <% unless @flights.empty? %>
-  <%= form_with url: "example.com", method: :get, local: true do |f| %>
+  <%= form_with url: new_booking_path, method: :get, local: true do |f| %>
+    <%= f.hidden_field :num_passengers, value: params[:num_passengers] %>
+
     <%= f.collection_radio_buttons :flight_id, @flights, :id, :start_time do |b| %>
       <div>
         <%= b.radio_button %>

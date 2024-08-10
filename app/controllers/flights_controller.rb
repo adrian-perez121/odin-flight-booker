@@ -17,7 +17,7 @@ class FlightsController < ApplicationController
     # Will filter out flights based on search results
     @flights = Flight
     @flights = @flights.departing_from(params[:departure_airport_id].to_i) unless params[:departure_airport_id] == '0'
-    @flights = @flights.departing_on(params[:start_time].to_i) unless params[:start_time] == '0'
+    @flights = @flights.departing_on(params[:start_time]) unless params[:start_time] == '0'
     @flights = @flights.arriving_at(params[:arrival_airport_id].to_i) unless params[:arrival_airport_id] == '0'
 
   end

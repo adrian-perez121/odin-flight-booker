@@ -6,18 +6,39 @@
 <%= form_with model: @booking do |f|%>
   <%= f.hidden_field :flight_id, value: params[:flight_id] %>
 
-  <%= f.fields_for :passengers do |passenger_form| %>
-    <h3>Passenger</h3>
-    <div>
-      <%= passenger_form.label :name %>
-      <%= passenger_form.text_field :name %>
-    </div>
+  <div data-controller="passengers"  data-passengers-num-passengers-value=<%= params[:num_passengers] %>>
 
-    <div>
-      <%= passenger_form.label :email %>
-      <%= passenger_form.email_field :email %>
+    <template data-passengers-target="template">
+      <div><h3>Passenger</h3>
+        <div>
+          <label for="booking_passengers_attributes_[new]_name">Name</label>
+          <input type="text" name="booking[passengers_attributes][new][name]" id="booking_passengers_attributes_new_name">
+        </div>
+
+        <div>
+          <label for="booking_passengers_attributes_new_email">Email</label>
+          <input type="email" name="booking[passengers_attributes][new][email]" id="booking_passengers_attributes_new_email">
+        </div>
+      </div>
+    </template>
+    <div data-passengers-target="container">
+      <%= f.fields_for :passengers do |passenger_form| %>
+        <div>
+          <h3>Passenger</h3>
+          <div>
+            <%= passenger_form.label :name %>
+            <%= passenger_form.text_field :name %>
+          </div>
+
+          <div>
+            <%= passenger_form.label :email %>
+            <%= passenger_form.email_field :email %>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    <button type="button" data-action="click->passengers#add">Add Passenger</button>
+  </div>
 
   <%= f.submit %>
 

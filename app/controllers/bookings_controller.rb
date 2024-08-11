@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :require_passengers, only: [:new]
+  before_action :require_passengers, only: [:new, :create]
 
   def new
     @flight = Flight.find(params[:flight_id])

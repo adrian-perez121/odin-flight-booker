@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="passengers"
 export default class extends Controller {
-  static targets = [ "container", "template"]
+  static targets = [ "container", "template", "removebtn"]
   static values = {numPassengers: Number}
   add () {
     const clone = this.templateTarget.content.cloneNode(true)
@@ -23,5 +23,21 @@ export default class extends Controller {
     this.numPassengersValue += 1
     this.containerTarget.appendChild(clone)
 
+  }
+
+  remove() {
+    const passengerDiv = this.containerTarget.lastElementChild
+
+    this.numPassengersValue--
+    passengerDiv.remove()
+  }
+
+  numPassengersValueChanged(){
+    if (this.numPassengersValue <= 1) {
+      this.removebtnTarget.disabled = true
+    }
+    else {
+      this.removebtnTarget.disabled = false
+    }
   }
 }

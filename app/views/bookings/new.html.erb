@@ -22,7 +22,7 @@
       </div>
     </template>
     <div data-passengers-target="container">
-      <%= f.fields_for :passengers do |passenger_form| %>
+      <%= f.fields_for :passengers do |passenger_form, i| %>
         <div>
           <h3>Passenger</h3>
           <div>
@@ -37,6 +37,7 @@
         </div>
       <% end %>
     </div>
+    <button data-passengers-target="removebtn" data-action="click->passengers#remove" type="button">Remove</button>
     <button type="button" data-action="click->passengers#add">Add Passenger</button>
   </div>
 

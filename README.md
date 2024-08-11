@@ -20,3 +20,11 @@ really important note to self...MAKE SURE YOU HAVE A CREATE ACTION DEFINE FOR A 
 
 After this form, things went smoothly from here. I have so many more mental notes now with forms and how nested forms work.
 Onto the next project!
+
+## More Final Thoughts
+
+After messing around with Stimulus in this project... I found that it was very hard. I could not figure out how to have
+button that removed a specific passenger from the DOM. Instead, I created a button that removed the last added passenger.
+This button would disable once there was a passenger left. I thought I was making this more complicated that it needed to
+be at first but after at looking at other people solutions I am proud to say that was I was on the right track. Welp the
+only way to get better is with more practice.

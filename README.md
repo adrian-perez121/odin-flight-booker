@@ -28,3 +28,10 @@ button that removed a specific passenger from the DOM. Instead, I created a butt
 This button would disable once there was a passenger left. I thought I was making this more complicated that it needed to
 be at first but after at looking at other people solutions I am proud to say that was I was on the right track. Welp the
 only way to get better is with more practice.
+
+## Even more final thoughts...
+
+Ok, this should be the last one.... Creating the mailer wasn't too bad. It just took alot of reading the docs
+to get things working but after that it was very similar to a controller. The letter gem proved to be very
+useful so I wasn't spamming myself. I also got the app to work with my gmail! However, things got difficult when it came
+to using SendGrid. For now this app will remain out of deployment.

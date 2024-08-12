@@ -1,0 +1,25 @@
+Your Flight
+
+===========================
+
+From: <%= @flight.departure_airport.code %>
+To: <%= @flight.arrival_airport.code %>
+Date: <%= @flight.start_time %>
+Duration: <%= @flight.flight_duration %> hours
+
+==========================
+
+<% if  @booking.passengers.count > 1 %>
+  You are flying with:
+  <% @passengers.each do |passenger| %>
+    <% next if passenger == @passenger %>
+    - <%= passenger.name %> (<%= passenger.email %>)
+  <% end %>
+<% end %>
+
+Thank you for flying with us, <%= @passenger.name %>!
+
+Your Flight ID: <%= @flight.id %>
+Your Booking ID: <%= @booking.id %>
+
+View your flight here: <%= @url %>

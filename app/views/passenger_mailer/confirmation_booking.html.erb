@@ -1,0 +1,22 @@
+<h1>Your Flight</h1>
+
+<h2><%= @flight.departure_airport.code %> -----> <%= @flight.arrival_airport.code %></h2>
+<p> Thank you for flying with us <%= @passenger.name %></p>
+<ul>
+  <li>Your Flight ID: <%= @flight.id %></li>
+  <li>Your Booking ID: <%= @booking.id %></li>
+  <li>Flight Date: <%= @flight.start_time %></li>
+  <li>Flight Duration: <%= @flight.flight_duration %></li>
+</ul>
+
+<% if @booking.passengers.count > 1 %>
+  <h2>You are flying with:</h2>
+  <ul>
+    <% @passengers.each do |passenger| %>
+      <% next if passenger == @passenger %>
+    <li><%= passenger.name %> (<%= passenger.email %>)</li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p>View your flight <%=link_to 'here', @url %></p>
